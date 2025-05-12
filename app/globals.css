@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+/* 强制所有滚动条始终可见 */
+.always-scrollbar {
+  scrollbar-width: auto !important; /* Firefox */
+}
+.always-scrollbar::-webkit-scrollbar {
+  display: block !important; /* Chrome/Safari */
+  width: 8px;
+  background: #f3f4f6;
+}
+.always-scrollbar::-webkit-scrollbar-thumb {
+  background: #a0aec0;
+  border-radius: 4px;
+} 
