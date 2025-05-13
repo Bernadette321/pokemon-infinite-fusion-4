@@ -48,12 +48,43 @@ export default function Home() {
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
+  
+  const goToPrevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+  
+  const goToNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
 
   return (
     <div className="min-h-screen">
       {/* Hero Banner Carousel */}
       <div className={`relative h-[60vh] bg-gradient-to-r ${slides[currentSlide].bgColor} transition-colors duration-700`}>
         <div className="absolute inset-0 bg-black/30" />
+        
+        {/* Left Arrow */}
+        <button 
+          onClick={goToPrevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 w-10 h-10 rounded-full flex items-center justify-center z-10 transition-colors"
+          aria-label="Previous slide"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-white">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        
+        {/* Right Arrow */}
+        <button 
+          onClick={goToNextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 w-10 h-10 rounded-full flex items-center justify-center z-10 transition-colors"
+          aria-label="Next slide"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-white">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        
         <div className="relative h-full flex flex-col items-center justify-center text-white px-4">
           <h1 className="text-5xl md:text-6xl font-bold mb-4 text-center">
             Pokémon Infinite Fusion
@@ -90,7 +121,7 @@ export default function Home() {
       {/* Features Section */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <h2 className="text-3xl font-bold text-center mb-12">Explore the World of Pokémon Fusion</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           <Link href="/calculator" className="group">
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow h-full flex flex-col">
               <div className="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
