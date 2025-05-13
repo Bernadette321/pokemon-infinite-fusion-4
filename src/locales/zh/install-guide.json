@@ -1,0 +1,32 @@
+{
+  "title": "安装指南",
+  "systemRequirements": "系统要求",
+  "windowsRequirement": "Windows 7 或更高版本",
+  "macRequirement": "macOS 10.13 或更高版本",
+  "storageRequirement": "至少 2GB 可用存储空间",
+  "installationSteps": "安装步骤",
+  "downloadGame": "下载游戏",
+  "downloadDescription": "从官方 GitHub 仓库下载最新版本的宝可梦无限融合。",
+  "downloadButton": "下载最新版本",
+  "extractFiles": "解压文件",
+  "extractDescription": "将下载的 ZIP 文件解压到您选择的位置。确保有足够的磁盘空间。",
+  "runGame": "运行游戏",
+  "runDescription": "双击 Game.exe 文件（Windows）或 Game.app（Mac）启动游戏。",
+  "faq": "常见问题",
+  "faq1": {
+    "question": "游戏无法启动，该怎么办？",
+    "answer": "确保您使用的是最新版本的游戏，并且您的系统满足最低要求。如果您使用的是 Windows，请尝试以管理员身份运行游戏。"
+  },
+  "faq2": {
+    "question": "如何更新游戏？",
+    "answer": "从官方 GitHub 仓库下载最新版本，替换现有的游戏文件。请确保先备份您的存档文件。"
+  },
+  "faq3": {
+    "question": "存档文件在哪里？",
+    "answer": "存档文件通常位于游戏目录中的 'Save' 文件夹内。在更新游戏之前，请确保备份此文件夹。"
+  },
+  "changelog": "更新日志",
+  "changelog.v5.0.0.1": "添加了新的融合组合",
+  "changelog.v5.0.0.2": "改进了游戏性能",
+  "changelog.v5.0.0.3": "修复了各种错误和问题"
+} 

@@ -1,0 +1,32 @@
+{
+  "title": "Installation Guide",
+  "systemRequirements": "System Requirements",
+  "windowsRequirement": "Windows 7 or later",
+  "macRequirement": "macOS 10.13 or later",
+  "storageRequirement": "At least 2GB of free storage space",
+  "installationSteps": "Installation Steps",
+  "downloadGame": "Download the Game",
+  "downloadDescription": "Download the latest version of Pokémon Infinite Fusion from the official GitHub repository.",
+  "downloadButton": "Download Latest Version",
+  "extractFiles": "Extract the Files",
+  "extractDescription": "Extract the downloaded ZIP file to a location of your choice. Make sure you have enough disk space.",
+  "runGame": "Run the Game",
+  "runDescription": "Double-click the Game.exe file (Windows) or Game.app (Mac) to start the game.",
+  "faq": "Frequently Asked Questions",
+  "faq1": {
+    "question": "The game won't start. What should I do?",
+    "answer": "Make sure you have the latest version of the game and that your system meets the minimum requirements. Try running the game as administrator if you're on Windows."
+  },
+  "faq2": {
+    "question": "How do I update the game?",
+    "answer": "Download the latest version from the official GitHub repository and replace your existing game files. Make sure to backup your save files first."
+  },
+  "faq3": {
+    "question": "Where are my save files located?",
+    "answer": "Save files are typically located in the 'Save' folder within your game directory. Make sure to backup this folder before updating the game."
+  },
+  "changelog": "Changelog",
+  "changelog.v5.0.0.1": "Added new fusion combinations",
+  "changelog.v5.0.0.2": "Improved game performance",
+  "changelog.v5.0.0.3": "Fixed various bugs and issues"
+} 
