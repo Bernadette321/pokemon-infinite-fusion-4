@@ -7,6 +7,7 @@ const navItems = [
   { href: '/calculator', label: 'Calculator' },
   { href: '/install-guide', label: 'Install Guide' },
   { href: '/dex', label: 'Dex' },
+  { href: '/ai-fusion-generator', label: 'AI Fusion Generator' },
 ];
 
 export default function Navbar() {
