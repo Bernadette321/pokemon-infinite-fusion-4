@@ -52,7 +52,12 @@ export async function POST(request: Request) {
     }
 
     // 获取宝可梦数据 (仅用于构建prompt)
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    let baseUrl = 'http://localhost:3000'; // Default for local development
+    if (process.env.VERCEL_URL) { // VERCEL_URL is set by Vercel for the deployment URL (without protocol)
+      baseUrl = `https://${process.env.VERCEL_URL}`;
+    } else if (process.env.NEXT_PUBLIC_BASE_URL) { // Fallback to user-defined NEXT_PUBLIC_BASE_URL
+      baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    }
     const pokedexUrl = `${baseUrl}/pokedex_with_fusion_stats.json`;
     
     let pokedexData;
