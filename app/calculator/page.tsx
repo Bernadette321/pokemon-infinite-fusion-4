@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface Pokemon {
   id: number;
@@ -17,12 +18,17 @@ function PokemonCard({ id, name, isSelected, onClick }: { id: number; name: stri
         isSelected ? 'ring-2 ring-blue-500 bg-blue-50' : 'hover:bg-gray-50'
       }`}
     >
-      <img
-        src={`/sprites/base/${id}.png`}
-        alt={name}
-        className="w-20 h-20 object-contain mb-1"
-        onError={e => (e.currentTarget as HTMLImageElement).style.display = 'none'}
-      />
+      <div className="relative w-20 h-20 mb-1">
+        <Image
+          src={`/sprites/base/${id}.png`}
+          alt={name}
+          fill
+          sizes="80px"
+          className="object-contain"
+          onError={() => (document.getElementById(`img-${id}`) as HTMLImageElement)?.style.setProperty('display', 'none')}
+          id={`img-${id}`}
+        />
+      </div>
       <span className="text-sm font-medium text-center">{name}</span>
     </button>
   );
@@ -69,6 +75,10 @@ export default function Calculator() {
       .then(json => {
         setData(json);
         setLoading(false);
+      })
+      .catch(error => {
+        console.error("Error loading Pokémon data:", error);
+        setLoading(false); 
       });
   }, []);
 
@@ -96,11 +106,27 @@ export default function Calculator() {
           <div className="flex flex-col items-center">
             <div className="flex gap-4 mb-2">
               <div className="flex flex-col items-center">
-                <img src={`/sprites/base/${p1.id}.png`} alt={p1.name.english} className="w-16 h-16 object-contain bg-gray-100 rounded" />
+                <div className="relative w-16 h-16 bg-gray-100 rounded">
+                  <Image
+                    src={`/sprites/base/${p1.id}.png`}
+                    alt={p1.name.english}
+                    fill
+                    sizes="64px"
+                    className="object-contain"
+                  />
+                </div>
                 <div className="text-xs text-gray-500">{p1.name.english}</div>
               </div>
               <div className="flex flex-col items-center">
-                <img src={`/sprites/base/${p2.id}.png`} alt={p2.name.english} className="w-16 h-16 object-contain bg-gray-100 rounded" />
+                <div className="relative w-16 h-16 bg-gray-100 rounded">
+                  <Image
+                    src={`/sprites/base/${p2.id}.png`}
+                    alt={p2.name.english}
+                    fill
+                    sizes="64px"
+                    className="object-contain"
+                  />
+                </div>
                 <div className="text-xs text-gray-500">{p2.name.english}</div>
               </div>
             </div>
@@ -110,13 +136,17 @@ export default function Calculator() {
               </div>
             )}
             {!imgError && fusionImg && (
-              <img
-                src={fusionImg}
-                alt={`${p1.name.english} + ${p2.name.english} fusion`}
-                className={`w-48 h-48 object-contain mb-2 border rounded bg-gray-50 ${imgLoading ? 'hidden' : ''}`}
-                onLoad={() => setImgLoading(false)}
-                onError={() => { setImgError(true); setImgLoading(false); }}
-              />
+              <div className="relative w-48 h-48 mb-2 border rounded bg-gray-50">
+                <Image
+                  src={fusionImg}
+                  alt={`${p1.name.english} + ${p2.name.english} fusion`}
+                  fill
+                  sizes="192px"
+                  className={`object-contain ${imgLoading ? 'hidden' : ''}`}
+                  onLoad={() => setImgLoading(false)}
+                  onError={() => { setImgError(true); setImgLoading(false); }}
+                />
+              </div>
             )}
             {imgError && (
               <div className="w-48 h-48 flex items-center justify-center bg-gray-100 border rounded mb-2 text-red-600 font-bold text-lg">
