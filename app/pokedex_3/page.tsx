@@ -16,7 +16,6 @@ interface Pokemon {
 export default function Pokedex3() {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedType, setSelectedType] = useState<string | null>(null);
   const [selected, setSelected] = useState<Pokemon | null>(null);
   const [headId, setHeadId] = useState<number | null>(null);
   const [bodyId, setBodyId] = useState<number | null>(null);

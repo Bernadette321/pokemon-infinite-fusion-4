@@ -9,11 +9,6 @@ interface Pokemon {
   };
 }
 
-interface StyleOption {
-  value: string;
-  label: string;
-}
-
 const MIN_FAST_PROGRESS_DURATION = 2000; // Ensure 0-50% takes at least this long
 const POLLING_INTERVAL_MS = 2500; // Slightly increased polling interval
 const MAX_POLL_FAILURES = 4; // Give up after this many consecutive poll failures

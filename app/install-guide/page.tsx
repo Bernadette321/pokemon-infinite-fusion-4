@@ -17,7 +17,7 @@ export default function InstallGuide() {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions (FAQ)</h2>
         <div className="mb-4">
-          <div className="font-semibold">Q: The game won't start or crashes on launch?</div>
+          <div className="font-semibold">Q: The game won&apos;t start or crashes on launch?</div>
           <div className="text-gray-700">A: Make sure you have extracted all files and installed the required Visual C++ Redistributable. Try running as administrator.</div>
         </div>
         <div className="mb-4">

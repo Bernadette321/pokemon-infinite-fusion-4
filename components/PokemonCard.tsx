@@ -8,6 +8,7 @@ interface PokemonCardProps {
   isSelected?: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function PokemonCard({ id: _id, name, imageUrl, onClick, isSelected = false }: PokemonCardProps) {
   return (
     <button
