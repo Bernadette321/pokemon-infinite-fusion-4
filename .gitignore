@@ -34,5 +34,5 @@ next-env.d.ts _assets/
 _assets/
 
 public/sprites/fusions/
-public/sprites/base/
-sprites/
+# public/sprites/base/  <-- Commented out or removed
+# sprites/              <-- Commented out or removed
