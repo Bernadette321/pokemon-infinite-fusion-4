@@ -262,7 +262,58 @@ export default function AIFusionGenerator() {
       {imageUrl && !loading && (
         <div className="flex flex-col items-center">
           <img src={imageUrl} alt="AI Fusion Result" className="w-64 h-64 object-contain rounded shadow mb-2" />
-          <div className="text-gray-500 text-sm">Generated with recraft-ai/recraft-v3</div>
+          <div className="text-gray-500 text-sm mb-3">Generated with recraft-ai/recraft-v3</div>
+          
+          {/* Download button */}
+          <a 
+            href={imageUrl}
+            download="pokemon-fusion.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-3 px-4 py-2 bg-green-600 text-white font-semibold rounded hover:bg-green-700 transition"
+          >
+            ⬇️ Download Image
+          </a>
+          
+          {/* Social sharing buttons */}
+          <div className="mt-3 flex flex-wrap gap-2 text-sm">
+            <a
+              href={`https://twitter.com/intent/tweet?text=Check out my AI Pokémon fusion!&url=${imageUrl}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              🐦 Share on Twitter
+            </a>
+
+            <a
+              href={`https://www.reddit.com/submit?url=${imageUrl}&title=My AI Pokémon fusion`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 hover:underline"
+            >
+              🧡 Share on Reddit
+            </a>
+
+            <a
+              href={`https://t.me/share/url?url=${imageUrl}&text=Look at this Pokémon fusion!`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline"
+            >
+              📬 Share on Telegram
+            </a>
+
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(imageUrl);
+                alert('Image link copied!');
+              }}
+              className="text-gray-600 hover:underline"
+            >
+              📋 Copy image link
+            </button>
+          </div>
         </div>
       )}
     </div>
