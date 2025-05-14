@@ -18,6 +18,16 @@ const replicate = new Replicate({
 // 新的目标模型标识符
 const TARGET_MODEL_IDENTIFIER = "recraft-ai/recraft-v3"; 
 
+// Define a more specific type for Pokemon entries in pokedexData
+interface PokedexEntry {
+  id: number;
+  name: {
+    english: string;
+    // Add other name languages if needed, e.g., japanese: string;
+  };
+  // Add other relevant fields from your pokedex_with_fusion_stats.json if used
+}
+
 export async function POST(request: Request) {
   try {
     // 记录请求开始
@@ -60,7 +70,7 @@ export async function POST(request: Request) {
     }
     const pokedexUrl = `${baseUrl}/pokedex_with_fusion_stats.json`;
     
-    let pokedexData;
+    let pokedexData: PokedexEntry[] | undefined;
     try {
       const pokedexResponse = await fetch(pokedexUrl);
       if (!pokedexResponse.ok) throw new Error(`Pokedex fetch failed: ${pokedexResponse.status}`);
@@ -73,8 +83,8 @@ export async function POST(request: Request) {
 
     let generatedPrompt = `Pokemon fusion`; // Default prompt
     if (pokedexData && headId && bodyId) {
-        const headPokemon = pokedexData.find((p: any) => p.id === headId);
-        const bodyPokemon = pokedexData.find((p: any) => p.id === bodyId);
+        const headPokemon = pokedexData.find((p: PokedexEntry) => p.id === headId);
+        const bodyPokemon = pokedexData.find((p: PokedexEntry) => p.id === bodyId);
         if (headPokemon && bodyPokemon) {
             // Updated prompt to be more specific about head and body
             generatedPrompt = `A Pokémon with the head of ${headPokemon.name.english} (head component) and the body of ${bodyPokemon.name.english} (body component), digital art, detailed. ${prompt || ''}`;

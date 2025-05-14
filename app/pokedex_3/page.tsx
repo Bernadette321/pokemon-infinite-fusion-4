@@ -14,9 +14,9 @@ interface Pokemon {
 }
 
 export default function Pokedex3() {
-  const [data, setData] = useState<Pokemon[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedType, setSelectedType] = useState<string | null>(null);
   const [selected, setSelected] = useState<Pokemon | null>(null);
   const [headId, setHeadId] = useState<number | null>(null);
   const [bodyId, setBodyId] = useState<number | null>(null);
@@ -25,13 +25,12 @@ export default function Pokedex3() {
     fetch("/pokedex_with_fusion_stats.json")
       .then((res) => res.json())
       .then((json) => {
-        setData(json);
-        setLoading(false);
+        setPokemonList(json);
       });
   }, []);
 
-  const filtered = data.filter((p) =>
-    p.name.english.toLowerCase().includes(search.toLowerCase())
+  const filtered = pokemonList.filter((p) =>
+    p.name.english.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -41,8 +40,8 @@ export default function Pokedex3() {
         type="text"
         placeholder="Search Pokémon by name..."
         className="w-full p-3 mb-6 border rounded shadow-sm"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
       />
       <ul className="space-y-2">
         {filtered.slice(0, 30).map((p) => (
@@ -144,7 +143,7 @@ export default function Pokedex3() {
                     value={headId ?? selected.id}
                     onChange={e => setHeadId(Number(e.target.value))}
                   >
-                    {data.map(p => (
+                    {pokemonList.map(p => (
                       <option key={p.id} value={p.id}>{p.name.english}</option>
                     ))}
                   </select>
@@ -156,7 +155,7 @@ export default function Pokedex3() {
                     value={bodyId ?? selected.id}
                     onChange={e => setBodyId(Number(e.target.value))}
                   >
-                    {data.map(p => (
+                    {pokemonList.map(p => (
                       <option key={p.id} value={p.id}>{p.name.english}</option>
                     ))}
                   </select>

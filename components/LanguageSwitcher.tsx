@@ -1,11 +1,10 @@
 "use client";
 import { useRouter, usePathname } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+// import { useTranslations } from 'next-intl'; // 't' was unused
 
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
-  const t = useTranslations('common');
 
   const switchLanguage = (locale: string) => {
     const newPath = pathname.replace(/^\/[a-z]{2}/, `/${locale}`);

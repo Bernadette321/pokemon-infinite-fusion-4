@@ -23,21 +23,14 @@ export default function AIFusionGenerator() {
   const [headPokemon, setHeadPokemon] = useState<{ value: number; label: string } | null>(null);
   const [bodyPokemon, setBodyPokemon] = useState<{ value: number; label: string } | null>(null);
   const [prompt, setPrompt] = useState("");
-  const [selectedStyle, setSelectedStyle] = useState<StyleOption | null>({ value: "default", label: "Default Style (recraft-ai/recraft-v3)" });
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [isImageComponentLoading, setIsImageComponentLoading] = useState(false);
   const [error, setError] = useState("");
   const [predictionId, setPredictionId] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
-  const [generationStartTime, setGenerationStartTime] = useState<number | null>(null);
 
-  const pollFailureCount = useRef(0); // Ref to track consecutive poll failures
-
-  // Using recraft-ai/recraft-v3 model by default
-  const styleOptions: StyleOption[] = [
-    { value: "default", label: "Default Style (recraft-ai/recraft-v3)" } 
-  ];
+  const pollFailureCount = useRef(0);
 
   useEffect(() => {
     fetch('/pokedex_with_fusion_stats.json')
@@ -143,7 +136,6 @@ export default function AIFusionGenerator() {
       clearInterval(pollIntervalId);
       pollFailureCount.current = 0; // Reset on cleanup
     };
-  // Removed generationStartTime from here, error handling is now based on consecutive failures
   }, [predictionId, loading, setError, setImageUrl, setLoading, setProgress]); 
 
   // Effect to handle the start of image component loading when imageUrl is set/reset
@@ -167,7 +159,6 @@ export default function AIFusionGenerator() {
     setPredictionId(null);
     setProgress(0); 
     pollFailureCount.current = 0; // Reset poll failure counter
-    setGenerationStartTime(Date.now()); 
     setLoading(true); 
 
     try {
@@ -189,7 +180,6 @@ export default function AIFusionGenerator() {
         setError(errorDetail);
         setLoading(false);
         setProgress(0); // Ensure progress is 0 on initial failure
-        // setGenerationStartTime(null); // Not strictly needed to nullify here
         return;
       }
       
@@ -296,9 +286,10 @@ export default function AIFusionGenerator() {
         document.body.removeChild(link);
         URL.revokeObjectURL(objectUrl); // Clean up the object URL for the PNG blob
 
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Download and conversion failed:", err);
-        setError("Download failed or could not convert to PNG. You can also try right-clicking the original image and selecting 'Save Image As...'. Error: " + err.message);
+        const errorMessage = err instanceof Error ? err.message : String(err);
+        setError("Download failed or could not convert to PNG. You can also try right-clicking the original image and selecting 'Save Image As...'. Error: " + errorMessage);
       }
     }
   }

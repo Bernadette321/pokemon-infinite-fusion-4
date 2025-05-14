@@ -8,7 +8,7 @@ interface PokemonCardProps {
   isSelected?: boolean;
 }
 
-export default function PokemonCard({ id, name, imageUrl, onClick, isSelected = false }: PokemonCardProps) {
+export default function PokemonCard({ id: _id, name, imageUrl, onClick, isSelected = false }: PokemonCardProps) {
   return (
     <button
       onClick={onClick}

@@ -10,6 +10,9 @@ export default function InstallGuide() {
           <li>Double-click <span className="font-mono bg-gray-100 px-2 py-1 rounded">Game.exe</span> to start the game.</li>
           <li>If you see missing DLL errors, install the <a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Microsoft Visual C++ Redistributable</a>.</li>
         </ol>
+        <p className="mb-4">
+          The installer will guide you through the process. If you&apos;re asked about installing additional components like DirectX or .NET runtimes, it&apos;s generally a good idea to install them.
+        </p>
       </section>
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions (FAQ)</h2>
@@ -34,6 +37,7 @@ export default function InstallGuide() {
           <li>Restart the game to apply changes.</li>
         </ol>
       </section>
+      <h3 className="text-xl font-semibold mb-2">4. Running the Game</h3>
     </div>
   );
 } 
